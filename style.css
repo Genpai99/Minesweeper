@@ -27,28 +27,5 @@ body {
     overflow: auto;
   }
       
-  
-  .cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ccc;
-    color: #333;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .cell.hidden {
-    background-color: #ccc;
-    color: transparent;
-  }
-  
-  .cell.bomb {
-    background-color: red;
-  }
-  
-  .cell.flagged {
-    background-color: yellow;
-  }
+
   
