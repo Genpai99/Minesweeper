@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # MineSweeper
 
 My project is called Minesweeper. It's a game that let's players play the popular game minesweeper. The game starts off with board off boxes. Clicking a box will reveal what is behind it. The aim of the game is to clear all boxes. Beware! There are mines littered throughout the board. If you click on a box that contains a mine, you lose! User's will have the option to restart if they win or lose! In the future, I'd like to add more levels with increasing difficulty after every win.
