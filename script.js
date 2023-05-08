@@ -1,5 +1,5 @@
 // ---Declare variables to store the game state---
-let board = [];  // 2D array to store the game board
+let board = [];  // Array to store the game board
 let gameOver = false;  // true when the game is over
 let gameWin = false;  // true when the player wins the game
 
