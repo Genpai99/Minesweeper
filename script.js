@@ -7,7 +7,6 @@ let gameWin = false;  // true when the player wins the game
 function boardStart() {
   // Create a array with random mine locations
   // Fill the rest of the boxes with the number of adjacent mines
-  // Render the board on the screen
 }
 
 // ---Define function to handle a click on a box---
