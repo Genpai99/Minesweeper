@@ -1,34 +1,34 @@
 // ---Declare variables to store the game state---
 let board = [];  // 2D array to store the game board
 let gameOver = false;  // true when the game is over
-let gameWon = false;  // true when the player wins the game
+let gameWin = false;  // true when the player wins the game
 
 // ---Define function to start the game board---
-function initBoard() {
-  // Create a 2D array with random mine locations
+function boardStart() {
+  // Create a array with random mine locations
   // Fill the rest of the boxes with the number of adjacent mines
   // Render the board on the screen
 }
 
 // ---Define function to handle a click on a box---
 function handleClick(row, col) {
-  if (gameOver || gameWon) {
+  if (gameOver || gameWin) {
     // Game is over, do nothing
     return;
   }
   if (Mine) {
     // Player clicked on a mine, game over
     gameOver = true;
-    // Show all mines and turn off clicks of boxes
+    // Show all mines and turn off the clicks for the boxes
     // Display "Game Over" message on the screen
   } else {
     // Player clicked on a safe box, reveal the box
     board[revealed = true;]
-    // If the cell is empty, reveal all adjacent cells recursively
+    // If the cell is empty, reveal all boxes next to it simutaneously
     // Check if the player has won the game
     if (checkWin()) {
       // Player has won the game and display "You Win!" message on the screen
-      gameWon = true;
+      gameWin = true;
     }
   }
 }
@@ -50,4 +50,4 @@ function renderBoard() {
 }
 
 // Call the initBoard function to start the game
-initBoard();
+boardStart();
