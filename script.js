@@ -1,5 +1,9 @@
 // ---Declare variables to store the game state---
+<<<<<<< HEAD
 let gameBoard = [];  // array to store the game board
+=======
+let board = [];  // Array to store the game board
+>>>>>>> cb327b14c32819769a0ab710458d9b341b81a031
 let gameOver = false;  // true when the game is over
 let gameWin = false;  // true when the player wins the game
 let numRows = 9;
@@ -8,6 +12,7 @@ let numBombs = 10;
 
 // ---Define function to start the game board---
 function boardStart() {
+<<<<<<< HEAD
   gameBoard = Array.from({ length: numRows }, () =>
       Array.from({ length: numCols }, () => 0)
   );
@@ -45,6 +50,10 @@ function boardStart() {
     const col = index % numCols;
     cell.addEventListener("click", () => handleClick(row, col));
   });
+=======
+  // Create a array with random mine locations
+  // Fill the rest of the boxes with the number of adjacent mines
+>>>>>>> cb327b14c32819769a0ab710458d9b341b81a031
 }
 
 
