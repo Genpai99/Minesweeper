@@ -1,37 +1,80 @@
 // ---Declare variables to store the game state---
-let board = [];  // 2D array to store the game board
+let gameBoard = [];  // array to store the game board
 let gameOver = false;  // true when the game is over
 let gameWin = false;  // true when the player wins the game
+let numRows = 9;
+let numCols = 9;
+let numBombs = 10;
 
 // ---Define function to start the game board---
 function boardStart() {
-  // Create a array with random mine locations
-  // Fill the rest of the boxes with the number of adjacent mines
-  // Render the board on the screen
+  gameBoard = Array.from({ length: numRows }, () =>
+      Array.from({ length: numCols }, () => 0)
+  );
+
+  let bombsPlaced = 0;
+  while (bombsPlaced < numBombs) {
+    const row = Math.floor(Math.random() * numRows);
+    const col = Math.floor(Math.random() * numCols);
+    if (gameBoard[row][col] !== -1) {
+        gameBoard[row][col] = -1;
+        bombsPlaced++;
+    }
+  }
+
+  for (let row = 0; row < numRows; row++) {
+    for (let col = 0; col < numCols; col++) {
+        if (gameBoard[row][col] !== -1) {
+            let count = 0;
+            for (let r = Math.max(0, row - 1); r <= Math.min(numRows - 1, row +1); r++) {
+                for (let c = Math.max(0, col - 1); c <= Math.min(numCols - 1, col + 1); c++) {
+                    if (gameBoard[r][c] === -1) {
+                        count++
+                    }
+                }
+            }
+            gameBoard[row][col] = count;
+        }
+    }
+  }
+
+  // ---Add event listeners to each cell---
+  const tableCells = document.querySelectorAll("td");
+  tableCells.forEach((cell, index) => {
+    const row = Math.floor(index / numCols);
+    const col = index % numCols;
+    cell.addEventListener("click", () => handleClick(row, col));
+  });
 }
+
 
 // ---Define function to handle a click on a box---
 function handleClick(row, col) {
-  if (gameOver || gameWin) {
-    // Game is over, do nothing
+  const tableRows = document.querySelectorAll("tr"); 
+  const clickedRow = tableRows[row];
+  const clickedSquare = clickedRow.querySelectorAll('td')[col];
+  const value = gameBoard[row][col];
+  
+  if (clickedSquare.classList.contains("revealed")) {
     return;
-  }
-  if (Mine) {
-    // Player clicked on a mine, game over
+  } else if (value === -1) {
+    clickedSquare.classList.add("revealed", "mine");
     gameOver = true;
-    // Show all mines and turn off the clicks for the boxes
-    // Display "Game Over" message on the screen
+    gameWin = false;
+    alert("game over");
+    return;
   } else {
-    // Player clicked on a safe box, reveal the box
-    board[revealed = true;]
-    // If the cell is empty, reveal all boxes next to it simutaneously
-    // Check if the player has won the game
-    if (checkWin()) {
-      // Player has won the game and display "You Win!" message on the screen
-      gameWin = true;
+    clickedSquare.classList.add("revealed");
+    if (value === 0) {
+      for (let r = Math.max(0, row - 1); r <= Math.min(numRows - 1, row + 1); r++) {
+        for (let c = Math.max(0, col - 1); c <= Math.min(numCols - 1, col + 1); c++) {
+          handleClick(r, c);
     }
-  }
+   }
+ }
 }
+}
+
 
 // ---Define function to check if the player has won the game---
 function checkWin() {
@@ -42,12 +85,50 @@ function checkWin() {
 
 // Define function to render the board on the screen
 function renderBoard() {
-  // Create a new HTML table element to display the board
-  // Loop through all boxes on the board
-  // Add a new table box for each cell on the board
-  // Add event listener for click on each box
-  // Update the class of each box based on its state such as revealed or flagged
+  const boardEl = document.querySelector('.game-board');
+
+  boardEl.innerHTML = '';
+
+  const tableEl = document.createElement('table');
+  for (let row = 0; row < numRows; row++) {
+      const trEl = document.createElement('tr');
+
+      for (let col = 0; col < numCols; col++) {
+          const tdEl = document.createElement('td');
+
+          if (gameBoard[row][col] === -1) {
+              const imgEl = document.createElement("img");
+              imgEl.src = "/Users/darious/Downloads/cyberpunk.png";
+              imgEl.alt = "Mine";
+              tdEl.appendChild(imgEl);
+          } else {
+              tdEl.textContent = gameBoard[row][col];
+          }
+
+          tdEl.addEventListener('click', function() {
+            handleClick(row, col);
+          });
+
+          trEl.appendChild(tdEl);
+      }
+
+      tableEl.appendChild(trEl);
+  }
+
+  boardEl.appendChild(tableEl);
 }
+
 
 // Call the initBoard function to start the game
 boardStart();
+
+
+
+
+
+const startBtn = document.querySelector(".btn");
+startBtn.addEventListener("click", function() {
+    boardStart();
+    renderBoard();
+});
+
