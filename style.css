@@ -37,7 +37,7 @@ body {
   
   .game-board {
     display: inline-block;; 
-    background-color: lightgray;
+    background-color: black;
     border: 1px solid black;
     margin: 0 auto;
     margin-top: 50px;
@@ -69,11 +69,16 @@ body {
     font-size: 24px;
     color: red;
     font-weight: bold;
-    border: 2px solid #0abdc6;
+    border: 2px solid #ea00d9;
+    box-shadow: 0 2px 4px white !important;
     opacity: 0;
     transition: all ease-in-out .5s;
     font-family: Arial, sans-serif;
     cursor: pointer;
+  }
+
+  td {
+    box-shadow: 0 2px 4px white !important;
   }
 
   .game-board td span {
@@ -81,7 +86,7 @@ body {
   }
 
   .revealed {
-    font-size: 24px;
+    font-size: 24px !important;
     opacity: 1 !important;
   }
 

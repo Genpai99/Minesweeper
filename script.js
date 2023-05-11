@@ -1,9 +1,5 @@
 // ---Declare variables to store the game state---
-<<<<<<< HEAD
 let gameBoard = [];  // array to store the game board
-=======
-let board = [];  // Array to store the game board
->>>>>>> cb327b14c32819769a0ab710458d9b341b81a031
 let gameOver = false;  // true when the game is over
 let gameWin = false;  // true when the player wins the game
 let numRows = 9;
@@ -12,7 +8,6 @@ let numBombs = 10;
 
 // ---Define function to start the game board---
 function boardStart() {
-<<<<<<< HEAD
   gameBoard = Array.from({ length: numRows }, () =>
       Array.from({ length: numCols }, () => 0)
   );
@@ -50,10 +45,6 @@ function boardStart() {
     const col = index % numCols;
     cell.addEventListener("click", () => handleClick(row, col));
   });
-=======
-  // Create a array with random mine locations
-  // Fill the rest of the boxes with the number of adjacent mines
->>>>>>> cb327b14c32819769a0ab710458d9b341b81a031
 }
 
 
@@ -87,10 +78,24 @@ function handleClick(row, col) {
 
 // ---Define function to check if the player has won the game---
 function checkWin() {
-  // Loop through all cells on the board
-  // If a non-mine box is not revealed, the game is not over yet
-  // If all non-mine boxes are revealed, the player wins the game
+  let revealedCells = 0;
+  const totalClearCells = numRows * numCols - numBombs;
+
+  for (let row = 0; row <  numRows; row++) {
+    for (let col = 0; col < numCols; col++) {
+      if (gameBoard[row][col] !== -1 && gameBoard[row][col].classList.contains("revealed")) {
+        revealedCells++;
+      }
+    }
+  }
+
+  if (revealedCell === totalClearCells) {
+    gameOver = true;
+    gameWin = true;
+    alert("You Win");
+  }
 }
+
 
 // Define function to render the board on the screen
 function renderBoard() {
@@ -140,4 +145,6 @@ startBtn.addEventListener("click", function() {
     boardStart();
     renderBoard();
 });
+
+
 
