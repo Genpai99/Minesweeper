@@ -75,7 +75,6 @@ function handleClick(row, col) {
 }
 }
 
-
 // ---Define function to check if the player has won the game---
 function checkWin() {
   let revealedCells = 0;
