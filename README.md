@@ -8,6 +8,7 @@ My project is called Cyberpunk Minesweeper. It's a game that let's players play 
 
 ![Game-Board](https://i.ibb.co/jvXvs92/Screen-Shot-2023-05-12-at-2-45-39-PM.png)
 
+Game Link: https://stunning-mousse-6f1222.netlify.app/
 
 MVP Goals
 As a player, I would like to be informed when the game is over due to a loss.
