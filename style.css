@@ -28,11 +28,12 @@ body {
 
   #timer {
     text-shadow: 0 2px 2px white;
-    color: red;
-    font-size: x-large;
+    color: #ea00d9;
+    font-weight: 500;
+    font-size: 40px;
     position: absolute;
     top: 10%;
-    left: 25%;
+    left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
   }
@@ -44,10 +45,10 @@ body {
     margin: 0 auto;
     margin-top: 50px;
     padding: 5px;
-    width: 80%;
-    max-width: 650px;
-    height: 80%;
-    max-height: 650px;
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    max-height: 600px;
     overflow: auto;
     position: relative;
     z-index: 1;
@@ -55,6 +56,7 @@ body {
     overflow: auto;
     min-width: 500px;
     min-height: 500px;
+    resize: none;
   }
   
   #board {
@@ -73,13 +75,11 @@ body {
     text-align: center;
     vertical-align: middle;
     font-size: 24px;
-    color: red;
-    font-weight: bold;
+    font-weight: 600;
     border: 2px solid #129415;
     box-shadow: 0 2px 4px white !important;
     opacity: 0;
-    transition: all ease-in-out .5s;
-    font-family: Arial, sans-serif;
+    transition: all ease-in-out .3s;
     cursor: pointer;
   }
 
@@ -113,13 +113,15 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 24px;
-    background-color: lightgray;
-    border: 1px;
+    background-color: #ea00d9;
+    border: 0;
     border-radius: 10px;
+    color: white;
+    font-weight: 300;
   }
   
   .btn:hover {
-    background-color: white;
+    background-color: #0abdc6;
   }
 
   #start-message {
@@ -149,4 +151,40 @@ body {
     color: #1ad0e6;
     position: absolute;
     bottom: 0;
+  }
+
+  .disable-click {
+    pointer-events: none;
+  }
+
+  #winScreen , #lossScreen {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #lossScreen h5 {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .image-container img {
+    max-width: 50%;
+    max-height: 50%;
   }

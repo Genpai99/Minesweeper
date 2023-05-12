@@ -9,21 +9,37 @@
     <script defer src="script.js"></script>
   </head>
   <body>
+    <audio id="circuitSound" src="/Users/darious/Downloads/shortcircuit.mp3"></audio>
+    <audio id="pingSound" src="/Users/darious/Downloads/pingsound.mp3"></audio>
     <div class="text-container">
-       <div id="txt"></div>
-       <div id="timer">txt holder</div>
+       <div id="txt" style="display: block;"></div>
+       <div id="timer"></div>
     </div>
-    <div class="game-board">
+    <div id="gameContent">
+      <div class="game-board">
       <div id="start-message">
         <h1>Mission Summary: "Shadows of Neon"</h1>
-        <h2>In Nightcity, Edgerunners who follow the orders of David Martinez, infiltrate OmniCorp's headquarters. Their goal: to hack the heavily guarded mainframe and expose corporate secrets. Kiwi, the team's skilled netrunner, must bypass the corporations security system, and breach the mainframe. Time is tight as guards close in.</h2>
+        <h2>In Nightcity, Edgerunners who follow the orders of David Martinez, infiltrate Arasaka's headquarters. Their goal: to hack the heavily guarded mainframe and expose corporate secrets. Kiwi, the team's skilled netrunner, must bypass the corporations security system, and breach the mainframe. Time is tight as guards close in.</h2>
         <h3>How to hack into the mainframe:
           1. Once you select start, a table of cells will appear.
           2. Click each cell until all cells have been revealed.
           3. Beware! Some cells contain circuit breakers that will fry the mainframe if revealed.
           4. Empty cells will contain numerical values that tell how many breakers are in cells immediately next to it.
         </h3>
-        <h4> "There's not much time Kiwi. We can buy you about two and a half minutes. Good Luck" - David M.</h4>
+        <h4> "There's not much time Kiwi. We can buy you about three minutes. Good Luck." - David M.</h4>
+       </div>
+     </div>
+    </div>
+    <div id="lossScreen" style="display: none;">
+      <h5>You Lose! Click reset to try again.</h5>
+      <div class="image-container">
+        <img src="/Users/darious/Downloads/RebeccaCrying.webp" alt="RebeccaBeCrying">
+      </div>
+    </div>
+    <div id="winScreen" style="display: none;">
+      <h6>You Win! Great Job!</h6>
+      <div class="image-container">
+        <img src="/Users/darious/Downloads/Rebeccadance.gif" alt="RebeccaBeDancing">
       </div>
     </div>
     <footer>

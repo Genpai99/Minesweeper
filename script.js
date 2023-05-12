@@ -5,6 +5,8 @@ let gameWin = false;  // true when the player wins the game
 let numRows = 9;
 let numCols = 9;
 let numBombs = 10;
+let gameInProgress = false; 
+let timerInterval;
 
 // ---Define function to start the game board---
 function boardStart() {
@@ -61,10 +63,15 @@ function handleClick(row, col) {
     clickedSquare.classList.add("revealed", "mine");
     gameOver = true;
     gameWin = false;
-    alert("game over");
+    clickedSquare.classList.add("disable-click");
+    clickedRow.classList.add("disable-click");
+    playCircuit();
+    setTimeout(showLossScreen, 4000);
     return;
   } else {
     clickedSquare.classList.add("revealed");
+    clickedSquare.classList.add("disable-click");
+    playPing();
     if (value === 0) {
       for (let r = Math.max(0, row - 1); r <= Math.min(numRows - 1, row + 1); r++) {
         for (let c = Math.max(0, col - 1); c <= Math.min(numCols - 1, col + 1); c++) {
@@ -88,10 +95,10 @@ function checkWin() {
     }
   }
 
-  if (revealedCell === totalClearCells) {
+  if (revealedCells === totalClearCells) {
     gameOver = true;
     gameWin = true;
-    alert("You Win");
+    showWinScreen();
   }
 }
 
@@ -116,7 +123,20 @@ function renderBoard() {
               tdEl.appendChild(imgEl);
           } else {
               tdEl.textContent = gameBoard[row][col];
-          }
+
+              if (gameBoard[row][col] === 0) {
+                tdEl.style.color = "#c4544d";
+              } else if (gameBoard[row][col] === 1) {
+                tdEl.style.color = "#fad44f";
+              } else if (gameBoard[row][col] === 2) {
+                  tdEl.style.color = "#1ad0e6";
+              } else if (gameBoard[row][col] === 3) {
+                  tdEl.style.color = "#0fb48e";
+                } else if (gameBoard[row][col] === 4) {
+                  tdEl.style.color = "#711c91";
+              }
+            }
+          
 
           tdEl.addEventListener('click', function() {
             handleClick(row, col);
@@ -132,18 +152,100 @@ function renderBoard() {
 }
 
 
-// Call the initBoard function to start the game
+// -- Call the initBoard function to start the game --
 boardStart();
-
-
 
 
 
 const startBtn = document.querySelector(".btn");
 startBtn.addEventListener("click", function() {
-    boardStart();
+  if (!gameInProgress) {
+    gameInProgress = true;
+    resetBoard();
     renderBoard();
+    updateTimer();
+    startBtn.textContent = "Reset"
+  } else {
+    resetBoard();
+  }
 });
 
 
+const timerText = document.getElementById("timer");
+let time = 0;
 
+function updateTimer() {
+  startTime = Date.now();
+
+  timerInterval = setInterval(function() {
+    const currentTime = Date.now();
+    const elapsedSeconds = Math.floor ((currentTime - startTime) / 1000);
+  
+    timerText.textContent = elapsedSeconds;
+    if (elapsedSeconds === 180) {
+      clearInterval(timerInterval);
+      gameInProgress = false;
+      gameOver = true;
+      gameWin = false;
+      setTimeout(showLossScreen, 1000);
+    }
+  }, 1000);
+}
+
+// --Function ro reset board --
+
+function resetBoard() {
+  gameBoard = [];
+  gameOver = false;
+  gameWin = false;
+  time = 0;
+  clearInterval(timerInterval);
+
+  const boardEl = document.querySelector(".game-board");
+  boardEl.innerHTML = '';
+
+  boardStart();
+  renderBoard();
+  updateTimer();
+
+  const winScreen = document.getElementById("winScreen");
+  winScreen.style.display = "none";
+  const lossScreen = document.getElementById("lossScreen");
+  lossScreen.style.display = "none";
+  const gameContent = document.getElementById("gameContent");
+  gameContent.style.display = "block";
+  const timer = document.getElementById("timer");
+  timer.style.display = "block";
+  startBtn.textContent = "Reset";
+}
+
+function playCircuit() {
+  const circuitSound = document.getElementById("circuitSound");
+  circuitSound.play();
+}
+
+function playPing() {
+  const pingSound = document.getElementById("pingSound");
+  pingSound.play();
+}
+
+function showWinScreen() {
+  const gameContent = document.getElementById("gameContent");
+  const winScreen = document.getElementById("winScreen");
+  gameContent.style.display = "none";
+  winScreen.style.display = "block";
+  hideTimer();
+}
+
+function showLossScreen() {
+  const gameContent = document.getElementById("gameContent");
+  const winScreen = document.getElementById("lossScreen");
+  gameContent.style.display = "none";
+  lossScreen.style.display = "block";
+  hideTimer();
+}
+
+function hideTimer() {
+  const timer = document.getElementById("timer");
+  timer.style.display = "none";
+}
