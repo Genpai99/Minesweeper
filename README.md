@@ -2,7 +2,7 @@
 
 My project is called Cyberpunk Minesweeper. It's a game that let's players play the popular game minesweeper with a Cyberpunk: Edgerunners theme. The game starts off with board of cells. Clicking a cell will reveal what is behind it. The aim of the game is to clear all boxes. Beware! There are mines littered throughout the board. If you click on a box that contains a mine, you lose! User's will have the option to restart if they win or lose! In the future, I'd like to add more levels with increasing difficulty after every win.
 
-![Start](https://i.ibb.co/6ZHTVXR/Screen-Shot-2023-05-12-at-2-43-08-PM.png))
+![Start](https://i.ibb.co/6ZHTVXR/Screen-Shot-2023-05-12-at-2-43-08-PM.png)
 
 ![Lose Screen](https://i.ibb.co/svNnSZf/Screen-Shot-2023-05-12-at-2-44-04-PM.png)
 
