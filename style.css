@@ -170,6 +170,14 @@ body {
     flex-direction: column;
   }
 
+
+  #winScreen h6 {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+  }
+  
   #lossScreen h5 {
     color: white;
     font-size: 24px;

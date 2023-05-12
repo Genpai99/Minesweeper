@@ -1,7 +1,7 @@
 // ---Declare variables to store the game state---
-let gameBoard = [];  // array to store the game board
-let gameOver = false;  // true when the game is over
-let gameWin = false;  // true when the player wins the game
+let gameBoard = [];  
+let gameOver = false;  
+let gameWin = false;  
 let numRows = 9;
 let numCols = 9;
 let numBombs = 10;
@@ -118,7 +118,7 @@ function renderBoard() {
 
           if (gameBoard[row][col] === -1) {
               const imgEl = document.createElement("img");
-              imgEl.src = "/Users/darious/Downloads/cyberpunk.png";
+              imgEl.src = "https://i.ibb.co/B24yxXr/cyberpunk.png";
               imgEl.alt = "Mine";
               tdEl.appendChild(imgEl);
           } else {
