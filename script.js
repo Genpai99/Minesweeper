@@ -73,23 +73,20 @@ function handleClick(row, col) {
     clickedSquare.classList.add("disable-click");
     playPing();
     if (value === 0) {
-      for (let r = Math.max(0, row - 1); r <= Math.min(numRows - 1, row + 1); r++) {
-        for (let c = Math.max(0, col - 1); c <= Math.min(numCols - 1, col + 1); c++) {
-          handleClick(r, c);
+      revealCells(row, col);
     }
+  }
+    checkWin();
    }
- }
-}
-}
 
 // ---Define function to check if the player has won the game---
 function checkWin() {
   let revealedCells = 0;
   const totalClearCells = numRows * numCols - numBombs;
 
-  for (let row = 0; row <  numRows; row++) {
+  for (let row = 0; row < numRows; row++) {
     for (let col = 0; col < numCols; col++) {
-      if (gameBoard[row][col] !== -1 && gameBoard[row][col].classList.contains("revealed")) {
+      if (gameBoard[row][col] !== -1 && gameBoard[row][col] !== 0 && gameBoard[row][col] !== -2) {
         revealedCells++;
       }
     }
@@ -101,6 +98,7 @@ function checkWin() {
     showWinScreen();
   }
 }
+
 
 
 // Define function to render the board on the screen
@@ -239,7 +237,7 @@ function showWinScreen() {
 
 function showLossScreen() {
   const gameContent = document.getElementById("gameContent");
-  const winScreen = document.getElementById("lossScreen");
+  const lossScreen = document.getElementById("lossScreen");
   gameContent.style.display = "none";
   lossScreen.style.display = "block";
   hideTimer();
@@ -248,4 +246,25 @@ function showLossScreen() {
 function hideTimer() {
   const timer = document.getElementById("timer");
   timer.style.display = "none";
+}
+
+// ---Define fuction to reveal empty cells around selected cell---
+function revealCells(row, col) {
+  for (let r = Math.max(0, row - 1); r <= Math.min(numRows - 1, row + 1); r++) {
+    for (let c = Math.max(0, col - 1); c <= Math.min(numCols - 1, col + 1); c++) {
+      const cell = gameBoard[r][c];
+      const tableRows = document.querySelectorAll("tr");
+      const clickedRow = tableRows[r];
+      const clickedSquare = clickedRow.querySelectorAll("td")[c];
+
+      if (!clickedSquare.classList.contains("revealed")) {
+        clickedSquare.classList.add("revealed");
+        clickedSquare.classList.add("disable-click");
+        playPing();
+        if (cell === 0) {
+          revealCells(r, c);
+        }
+      }
+    }
+  }
 }
