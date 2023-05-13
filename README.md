@@ -14,6 +14,8 @@ MVP Goals
 As a player, I would like to be informed when the game is over due to a loss.
 As a player, I would like to be informed that the I selected an area where there are no mines.
 As a player I would like to be able to restart the game after a win or loss.
+As a player, I want my game to show location of all mines after I have won the game.
+As a player, I would like to be informed when the game is over due to a win.
 
 Stretch Goals
 As a player, I would like a victory animation when I win the game.
@@ -22,4 +24,3 @@ As a player, I would like the game to get more difficult after a win and have it
 As a player who requires assistive technologies, I would like accessibility features so that I'm not left out of enjoying the game, such as a bomb noise if I click a mine or a ping if I select an empty box.
 As a player, I want to be informed how many bombs there are on the board, as well as empty boxes.
 As a player, I would like to be able to mark locations with to where I think a mine may be hiding.
-As a player, I want my game to show location of all mines after I have won the game.

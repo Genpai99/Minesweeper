@@ -77,16 +77,20 @@ function handleClick(row, col) {
     }
   }
     checkWin();
-   }
+}
+
 
 // ---Define function to check if the player has won the game---
+
 function checkWin() {
   let revealedCells = 0;
   const totalClearCells = numRows * numCols - numBombs;
 
+  const tableRows = document.querySelectorAll("tr");
   for (let row = 0; row < numRows; row++) {
+    const tableCells = tableRows[row].querySelectorAll('td');
     for (let col = 0; col < numCols; col++) {
-      if (gameBoard[row][col] !== -1 && gameBoard[row][col] !== 0 && gameBoard[row][col] !== -2) {
+      if (gameBoard[row][col] >= 0 && tableCells[col].classList.contains("revealed")) {
         revealedCells++;
       }
     }
@@ -95,10 +99,10 @@ function checkWin() {
   if (revealedCells === totalClearCells) {
     gameOver = true;
     gameWin = true;
-    showWinScreen();
+    revealAllBombs();
+    setTimeout(showWinScreen, 3000);
   }
 }
-
 
 
 // Define function to render the board on the screen
@@ -264,6 +268,19 @@ function revealCells(row, col) {
         if (cell === 0) {
           revealCells(r, c);
         }
+      }
+    }
+  }
+}
+
+function revealAllBombs() {
+  const tableRows = document.querySelectorAll("tr");
+  for (let row = 0; row < numRows; row++) {
+    const tableCells = tableRows[row].querySelectorAll("td");
+    for (let col = 0; col < numCols; col++) {
+      if (gameBoard[row][col] === -1) {
+        const cell = tableCells[col];
+        cell.classList.add("revealed");
       }
     }
   }
